@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Website</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f1014;
+            color: #ffffff;
+        }
+
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #252731;
+            background: #121319;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #9295a1;
+            margin-bottom: 25px;
+        }
+
+        .search {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px 18px;
+            border: 1px solid #30333d;
+            border-radius: 10px;
+            background: #191b22;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            background: #191b22;
+            color: #ddd;
+            border: 1px solid #30333d;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background: #272a34;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: #171920;
+            border: 1px solid #292c35;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .thumbnail {
+            height: 180px;
+            background: #242731;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777b88;
+        }
+
+        .info {
+            padding: 16px;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #858995;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer {
+            border-top: 1px solid #252731;
+            padding: 30px 20px;
+            text-align: center;
+            color: #777b88;
+        }
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">MY WEBSITE</div>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <h1>Find Your Content</h1>
+        <p>Browse our collection</p>
+
+        <input
+            type="text"
+            class="search"
+            placeholder="Search content..."
+        >
+    </section>
+
+    <div class="controls">
+        <button>Recent</button>
+        <button>Most Viewed</button>
+        <button>A-Z</button>
+    </div>
+
+    <section class="grid">
+
+        <div class="card">
+            <div class="thumbnail">
+                THUMBNAIL
+            </div>
+
+            <div class="info">
+                <div class="title">Example Content 1</div>
+
+                <div class="meta">
+                    <span>88 GB</span>
+                    <span>1.2K views</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="thumbnail">
+                THUMBNAIL
+            </div>
+
+            <div class="info">
+                <div class="title">Example Content 2</div>
+
+                <div class="meta">
+                    <span>25 GB</span>
+                    <span>850 views</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="thumbnail">
+                THUMBNAIL
+            </div>
+
+            <div class="info">
+                <div class="title">Example Content 3</div>
+
+                <div class="meta">
+                    <span>12 GB</span>
+                    <span>530 views</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    © 2026 My Website
+</footer>
+
+</body>
+</html>
