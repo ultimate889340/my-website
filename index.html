@@ -1,508 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Website</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0d0e12;
-            color: #f5f5f5;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* HEADER */
-
-        header {
-            height: 70px;
-            border-bottom: 1px solid #24262d;
-            background: #101116;
-            display: flex;
-            align-items: center;
-        }
-
-        .header-inner {
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 24px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 21px;
-            font-weight: 700;
-            letter-spacing: .5px;
-        }
-
-        .nav {
-            display: flex;
-            gap: 24px;
-            color: #a5a7b0;
-            font-size: 14px;
-        }
-
-        .nav a:hover {
-            color: white;
-        }
-
-        /* HERO */
-
-        .hero {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-            padding: 75px 20px 45px;
-        }
-
-        .hero h1 {
-            font-size: 46px;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-
-        .hero p {
-            color: #92949e;
-            font-size: 17px;
-            margin-bottom: 32px;
-        }
-
-        .search-box {
-            position: relative;
-            max-width: 650px;
-            margin: auto;
-        }
-
-        .search-box input {
-            width: 100%;
-            height: 54px;
-
-            border: 1px solid #30333c;
-            border-radius: 10px;
-
-            background: #181a20;
-            color: white;
-
-            padding: 0 20px;
-            font-size: 15px;
-
-            outline: none;
-        }
-
-        .search-box input:focus {
-            border-color: #555965;
-        }
-
-        .search-box input::placeholder {
-            color: #777a84;
-        }
-
-        /* CONTENT */
-
-        .content {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 24px 70px;
-        }
-
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            margin-bottom: 22px;
-        }
-
-        .results {
-            color: #8d909a;
-            font-size: 14px;
-        }
-
-        .filters {
-            display: flex;
-            gap: 8px;
-        }
-
-        .filter {
-            border: 1px solid #2d3038;
-            background: #16181e;
-            color: #bfc1c8;
-
-            padding: 9px 14px;
-            border-radius: 7px;
-
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .filter:hover {
-            background: #22252c;
-            color: white;
-        }
-
-        .filter.active {
-            background: #292c34;
-            color: white;
-        }
-
-        /* GRID */
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        /* CARD */
-
-        .card {
-            background: #15171d;
-            border: 1px solid #272a32;
-            border-radius: 10px;
-
-            overflow: hidden;
-
-            transition: transform .15s ease,
-                        border-color .15s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: #414550;
-        }
-
-        .thumbnail {
-            width: 100%;
-            aspect-ratio: 2 / 3;
-
-            background: #22252e;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            color: #6f727d;
-            font-size: 13px;
-        }
-.thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-}
-        .card-info {
-            padding: 11px;
-        }
-
-        .card-title {
-            font-size: 14px;
-            font-weight: 600;
-
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            margin-bottom: 10px;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-
-            color: #858893;
-            font-size: 12px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            border-top: 1px solid #24262d;
-            padding: 30px 20px;
-
-            text-align: center;
-
-            color: #6f727c;
-            font-size: 13px;
-        }
-
-        /* TABLET */
-
-        @media (max-width: 900px) {
-
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 650px) {
-
-            header {
-                height: 62px;
-            }
-
-            .header-inner {
-                padding: 0 18px;
-            }
-
-            .nav {
-                display: none;
-            }
-
-            .hero {
-                padding: 55px 18px 35px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .content {
-                padding: 0 15px 50px;
-            }
-.grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-            .toolbar {
-                display: block;
-            }
-
-            .results {
-                margin-bottom: 13px;
-            }
-
-            .filters {
-                overflow-x: auto;
-            }
-
-            .filter {
-                white-space: nowrap;
-            }
-
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .card-info {
-                padding: 11px;
-            }
-
-            .card-title {
-                font-size: 14px;
-            }
-
-            .card-meta {
-                font-size: 11px;
-            }
-        }
-
-        @media (max-width: 380px) {
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Website</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0d0e12;
+      color: #f5f5f5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      height: 70px;
+      border-bottom: 1px solid #24262d;
+      background: #101116;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #999;
+      margin-left: 25px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 45px 20px 25px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #999;
+      font-size: 16px;
+    }
+
+    /* SEARCH */
+    .search-box {
+      max-width: 1200px;
+      margin: 15px auto 25px;
+      padding: 0 20px;
+    }
+
+    #search {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 12px;
+      border: 1px solid #30323a;
+      background: #191a20;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #search::placeholder {
+      color: #777;
+    }
+
+    /* CONTENT HEADER */
+    .content-header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #content-count {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .sort-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .sort-buttons button {
+      background: #191a20;
+      color: #999;
+      border: 1px solid #30323a;
+      padding: 11px 16px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .sort-buttons button.active,
+    .sort-buttons button:hover {
+      background: #292c36;
+      color: white;
+    }
+
+    /* GRID */
+    .grid {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px 50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* CARD */
+    .card {
+      background: #191a20;
+      border: 1px solid #292b33;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #444752;
+    }
+
+    .thumbnail {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #22252f;
+      overflow: hidden;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-info {
+      padding: 15px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      color: #999;
+      font-size: 13px;
+    }
+
+    /* EMPTY */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #777;
+      padding: 50px 20px;
+      display: none;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #24262d;
+      text-align: center;
+      color: #666;
+      padding: 35px 20px;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 35px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
+  <div class="header-inner">
+    <div class="logo">MY WEBSITE</div>
 
-    <div class="header-inner">
-
-        <div class="logo">
-            MY WEBSITE
-        </div>
-
-        <nav class="nav">
-            <a href="#">Home</a>
-            <a href="#">Categories</a>
-            <a href="#">About</a>
-        </nav>
-
-    </div>
-
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
 </header>
 
-
 <section class="hero">
-
-    <h1>
-        Discover Your Collection
-    </h1>
-
-    <p>
-        Browse and explore our latest content.
-    </p>
-
-    <div class="search-box">
-
-        <input
-            type="text"
-            placeholder="Search content..."
-        >
-
-    </div>
-
+  <h1>Discover Your Collection</h1>
+  <p>Browse and explore our latest content.</p>
 </section>
 
+<div class="search-box">
+  <input
+    type="text"
+    id="search"
+    placeholder="Search content..."
+    autocomplete="off"
+  >
+</div>
 
-<main class="content">
+<div class="content-header">
 
-    <div class="toolbar">
+  <div id="content-count">
+    0 contents
+  </div>
 
-        <div class="results">
-            3 contents
-        </div>
+  <div class="sort-buttons">
+    <button id="recentBtn" class="active" onclick="sortContents('recent')">
+      Recent
+    </button>
 
-        <div class="filters">
+    <button id="viewsBtn" onclick="sortContents('views')">
+      Most Viewed
+    </button>
 
-            <button class="filter active">
-                Recent
-            </button>
+    <button id="azBtn" onclick="sortContents('az')">
+      A-Z
+    </button>
+  </div>
 
-            <button class="filter">
-                Most Viewed
-            </button>
+</div>
 
-            <button class="filter">
-                A-Z
-            </button>
+<main>
+  <div class="grid" id="contentGrid">
 
-        </div>
-
+    <div class="empty" id="emptyMessage">
+      No content found.
     </div>
 
-
-    <div class="grid">
-
-        <a href="autumren.html" class="card">
-
-            <div class="thumbnail">
-    <img src="https://s13.gifyu.com/images/bnygD.jpg" alt="Example Content 1">
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    Example Content 1
-                </div>
-
-                <div class="card-meta">
-                    <span>88 GB</span>
-                    <span>1.2K views</span>
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a href="amau.html" class="card">
-
-    <div class="thumbnail">
-        <img
-            src="https://s13.gifyu.com/images/bny6P.jpg"
-            alt="Amau"
-        >
-    </div>
-
-    <div class="card-info">
-
-        <div class="card-title">
-            Amau
-        </div>
-
-        <div class="card-meta">
-            <span>200 GB</span>
-            <span>0 views</span>
-        </div>
-
-    </div>
-
-        </a>
-        <a href="#" class="card">
-
-            <div class="thumbnail">
-                THUMBNAIL
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    Example Content 3
-                </div>
-
-                <div class="card-meta">
-                    <span>12 GB</span>
-                    <span>530 views</span>
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a href="#" class="card">
-
-            <div class="thumbnail">
-                THUMBNAIL
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    Example Content 4
-                </div>
-
-                <div class="card-meta">
-                    <span>40 GB</span>
-                    <span>420 views</span>
-                </div>
-
-            </div>
-
-        </a>
-
-    </div>
-
+  </div>
 </main>
 
-
 <footer>
-
-    © 2026 My Website
-
+  © 2026 My Website
 </footer>
+
+
+<script src="data.js"></script>
+
+<script>
+
+  let currentContents = [...contents];
+
+  function renderContents(data) {
+
+    const grid = document.getElementById("contentGrid");
+    const empty = document.getElementById("emptyMessage");
+    const count = document.getElementById("content-count");
+
+    grid.innerHTML = "";
+
+    if (data.length === 0) {
+
+      grid.appendChild(empty);
+      empty.style.display = "block";
+
+      count.textContent = "0 contents";
+
+      return;
+    }
+
+    empty.style.display = "none";
+
+    count.textContent =
+      data.length + (data.length === 1 ? " content" : " contents");
+
+
+    data.forEach((item, index) => {
+
+      const card = document.createElement("a");
+
+      card.className = "card";
+
+      /*
+       * Detail page menggunakan content.html
+       * dengan parameter ?id=
+       */
+      card.href = "content.html?id=" + index;
+
+
+      card.innerHTML = `
+
+        <div class="thumbnail">
+
+          <img
+            src="${item.image}"
+            alt="${item.title}"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          >
+
+        </div>
+
+        <div class="card-info">
+
+          <div class="card-title">
+            ${item.title}
+          </div>
+
+          <div class="card-meta">
+
+            <span>
+              ${item.size}
+            </span>
+
+            <span>
+              ${item.views || 0} views
+            </span>
+
+          </div>
+
+        </div>
+
+      `;
+
+      grid.appendChild(card);
+
+    });
+
+  }
+
+
+  function sortContents(type) {
+
+    document.querySelectorAll(".sort-buttons button")
+      .forEach(btn => btn.classList.remove("active"));
+
+
+    if (type === "recent") {
+
+      document.getElementById("recentBtn")
+        .classList.add("active");
+
+      currentContents = [...contents];
+
+    }
+
+
+    if (type === "views") {
+
+      document.getElementById("viewsBtn")
+        .classList.add("active");
+
+      currentContents = [...contents].sort(
+        (a, b) => (b.views || 0) - (a.views || 0)
+      );
+
+    }
+
+
+    if (type === "az") {
+
+      document.getElementById("azBtn")
+        .classList.add("active");
+
+      currentContents = [...contents].sort(
+        (a, b) => a.title.localeCompare(b.title)
+      );
+
+    }
+
+
+    renderContents(currentContents);
+
+  }
+
+
+  document.getElementById("search")
+    .addEventListener("input", function () {
+
+      const keyword = this.value.toLowerCase().trim();
+
+      const filtered = currentContents.filter(item =>
+        item.title.toLowerCase().includes(keyword)
+      );
+
+      renderContents(filtered);
+
+    });
+
+
+  renderContents(currentContents);
+
+</script>
 
 </body>
 </html>
