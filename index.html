@@ -6,6 +6,12 @@
 
   <title>ONLYOFNLEAKS.COM</title>
 
+  <!-- Telegram Icon -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
   <style>
     * {
       box-sizing: border-box;
@@ -47,14 +53,37 @@
       font-weight: bold;
     }
 
-    nav a {
+    .social-nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .social-nav > a:first-child {
       color: #999;
-      margin-left: 25px;
       font-size: 14px;
     }
 
-    nav a:hover {
+    .social-nav > a:first-child:hover {
       color: #fff;
+    }
+
+    .social {
+      font-size: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .social:hover {
+      transform: translateY(-2px);
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    .telegram {
+      color: #2AABEE;
     }
 
     .hero {
@@ -177,7 +206,7 @@
 
     .card-meta {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       color: #999;
       font-size: 13px;
     }
@@ -206,6 +235,7 @@
     }
 
     @media (max-width: 800px) {
+
       .grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -219,15 +249,13 @@
         align-items: flex-start;
         gap: 15px;
       }
+
     }
 
     @media (max-width: 550px) {
+
       .grid {
         grid-template-columns: 1fr;
-      }
-
-      nav {
-        display: none;
       }
 
       .hero {
@@ -237,6 +265,7 @@
       .hero h1 {
         font-size: 28px;
       }
+
     }
   </style>
 </head>
@@ -244,18 +273,35 @@
 <body>
 
 <header>
+
   <div class="header-inner">
 
     <div class="logo">
       ONLYOFNLEAKS.COM
     </div>
 
-    <nav>
-      <a href="index.html">Home</a>
+    <nav class="social-nav">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a
+        href="https://t.me/UAX_Archive_Hub"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social telegram"
+        aria-label="Telegram"
+      >
+        <i class="fa-brands fa-telegram"></i>
+      </a>
+
     </nav>
 
   </div>
+
 </header>
+
 
 <section class="hero">
 
@@ -269,6 +315,7 @@
 
 </section>
 
+
 <div class="search-box">
 
   <input
@@ -279,6 +326,7 @@
   >
 
 </div>
+
 
 <div class="content-header">
 
@@ -297,13 +345,6 @@
     </button>
 
     <button
-      id="viewsBtn"
-      onclick="sortContents('views')"
-    >
-      Most Viewed
-    </button>
-
-    <button
       id="azBtn"
       onclick="sortContents('az')"
     >
@@ -314,6 +355,7 @@
 
 </div>
 
+
 <main>
 
   <div
@@ -323,13 +365,23 @@
 
 </main>
 
+
 <footer>
+
   © 2026 ONLYOFNLEAKS.COM
+
   <br><br>
-  <a href="dmca.html">DMCA / Copyright</a>
+
+  <a href="dmca.html">
+    DMCA / Copyright
+  </a>
+
 </footer>
 
+
+<!-- DATA HANYA DARI data.js -->
 <script src="data.js"></script>
+
 
 <script>
 
@@ -406,10 +458,6 @@ function renderContents(data) {
             ${item.size}
           </span>
 
-          <span>
-            ${item.views || 🔥} views
-          </span>
-
         </div>
 
       </div>
@@ -441,22 +489,6 @@ function sortContents(type) {
 
     currentContents =
       [...contents];
-
-  }
-
-
-  if (type === "views") {
-
-    document
-      .getElementById("viewsBtn")
-      .classList.add("active");
-
-    currentContents =
-      [...contents].sort(
-        (a, b) =>
-          (b.views || 0) -
-          (a.views || 0)
-      );
 
   }
 
