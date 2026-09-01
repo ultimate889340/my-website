@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Content</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0d0e12;
+    color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 64px;
+    border-bottom: 1px solid #24262d;
+    background: #101116;
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 18px 50px;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 40px;
+    margin-bottom: 28px;
+    color: #999;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.back-home:hover {
+    color: #fff;
+}
+
+.thumbnail {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background: #20232b;
+}
+
+.thumbnail img {
+    width: 100%;
+    display: block;
+    max-height: 650px;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.description {
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 32px;
+}
+
+.info {
+    background: #191a1f;
+    border: 1px solid #292b32;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 30px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #292b32;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    color: #888;
+}
+
+.value {
+    color: #f1f1f1;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: #f1f1f1;
+    color: #111;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 0 18px 40px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+<div class="logo">
+MY WEBSITE
+</div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<a href="index.html" class="back-home">
+← Back to home
+</a>
+
+
+<div class="thumbnail">
+
+<img id="image" src="" alt="">
+
+</div>
+
+
+<h1 id="title">
+Loading...
+</h1>
+
+
+<p class="description" id="description">
+</p>
+
+
+<div class="info">
+
+<div class="row">
+
+<span class="label">
+Size
+</span>
+
+<span class="value" id="size">
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span class="label">
+Views
+</span>
+
+<span class="value">
+0
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span class="label">
+Added
+</span>
+
+<span class="value">
+September 1, 2026
+</span>
+
+</div>
+
+</div>
+
+
+<a id="contentLink"
+class="button"
+target="_blank"
+rel="noopener">
+
+Access Content
+
+</a>
+
+</main>
+
+
+<script src="data.js"></script>
+
+<script>
+
+const params =
+new URLSearchParams(window.location.search);
+
+const id =
+params.get("id");
+
+const item =
+contents.find(
+(content) =>
+content.id === id
+);
+
+if (item) {
+
+document.title =
+item.title + " - " + item.size;
+
+document.getElementById("title")
+.textContent = item.title;
+
+document.getElementById("description")
+.textContent =
+item.title + " collection.";
+
+document.getElementById("size")
+.textContent =
+item.size;
+
+document.getElementById("image")
+.src =
+item.image;
+
+document.getElementById("image")
+.alt =
+item.title;
+
+document.getElementById("contentLink")
+.href =
+item.link;
+
+}
+
+</script>
+
+</body>
+
+</html>
