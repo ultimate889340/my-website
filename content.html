@@ -221,7 +221,7 @@ h1 {
     <div class="header-inner">
 
         <div class="logo">
-            MY WEBSITE
+            ONLYOFNLEAKS.COM
         </div>
 
     </div>
@@ -231,17 +231,21 @@ h1 {
 
 <main class="container" id="page">
 
-    <!-- CONTENT AKAN DIMUAT OTOMATIS -->
+    <!-- CONTENT WILL LOAD AUTOMATICALLY -->
 
 </main>
 
 
-<!-- DATA UTAMA -->
+<!-- DATA ONLY FROM data.js -->
 
 <script src="data.js"></script>
 
 
 <script>
+
+/*
+ * Get content ID from URL
+ */
 
 const params =
     new URLSearchParams(window.location.search);
@@ -251,7 +255,7 @@ const id =
 
 
 /*
- * Cari konten berdasarkan ID
+ * Find content by ID
  */
 
 const item =
@@ -263,7 +267,43 @@ const page =
 
 
 /*
- * Jika ID tidak ditemukan
+ * International date formatter
+ * Example: September 1, 2026
+ */
+
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+
+        dateValue = new Date();
+
+    }
+
+    const date =
+        new Date(dateValue);
+
+
+    if (isNaN(date.getTime())) {
+
+        return dateValue;
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    );
+
+}
+
+
+/*
+ * If content is not found
  */
 
 if (!item) {
@@ -286,7 +326,7 @@ if (!item) {
                 href="index.html"
                 class="back-home"
             >
-                ← Back to home
+                ← Back to Home
             </a>
 
         </div>
@@ -297,7 +337,7 @@ if (!item) {
 
 
 /*
- * Jika konten ditemukan
+ * If content is found
  */
 
 else {
@@ -306,13 +346,23 @@ else {
         item.title + " - " + item.size;
 
 
+    /*
+     * Use added date from data.js.
+     * If no added date exists,
+     * use today's date automatically.
+     */
+
+    const addedDate =
+        formatDate(item.added);
+
+
     page.innerHTML = `
 
         <a
             href="index.html"
             class="back-home"
         >
-            ← Back to home
+            ← Back to Home
         </a>
 
 
@@ -354,24 +404,11 @@ else {
             <div class="row">
 
                 <span class="label">
-                    Views
-                </span>
-
-                <span class="value">
-                    ${item.views || 0}
-                </span>
-
-            </div>
-
-
-            <div class="row">
-
-                <span class="label">
                     Added
                 </span>
 
                 <span class="value">
-                    ${item.added || "September 1, 2026"}
+                    ${addedDate}
                 </span>
 
             </div>
