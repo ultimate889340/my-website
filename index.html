@@ -24,7 +24,6 @@
       color: inherit;
     }
 
-    /* HEADER */
     header {
       height: 70px;
       border-bottom: 1px solid #24262d;
@@ -58,7 +57,6 @@
       color: #fff;
     }
 
-    /* HERO */
     .hero {
       max-width: 1200px;
       margin: auto;
@@ -76,7 +74,6 @@
       font-size: 16px;
     }
 
-    /* SEARCH */
     .search-box {
       max-width: 1200px;
       margin: 15px auto 25px;
@@ -98,7 +95,6 @@
       color: #777;
     }
 
-    /* CONTENT HEADER */
     .content-header {
       max-width: 1200px;
       margin: auto;
@@ -133,7 +129,6 @@
       color: white;
     }
 
-    /* GRID */
     .grid {
       max-width: 1200px;
       margin: auto;
@@ -143,7 +138,6 @@
       gap: 16px;
     }
 
-    /* CARD */
     .card {
       background: #191a20;
       border: 1px solid #292b33;
@@ -188,16 +182,13 @@
       font-size: 13px;
     }
 
-    /* EMPTY */
     .empty {
       grid-column: 1 / -1;
       text-align: center;
       color: #777;
       padding: 50px 20px;
-      display: none;
     }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid #24262d;
       text-align: center;
@@ -206,7 +197,6 @@
       font-size: 14px;
     }
 
-    /* MOBILE */
     @media (max-width: 800px) {
       .grid {
         grid-template-columns: repeat(2, 1fr);
@@ -247,27 +237,43 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo">MY WEBSITE</div>
+
+    <div class="logo">
+      MY WEBSITE
+    </div>
 
     <nav>
       <a href="index.html">Home</a>
     </nav>
+
   </div>
 </header>
 
+
 <section class="hero">
-  <h1>Discover Your Collection</h1>
-  <p>Browse and explore our latest content.</p>
+
+  <h1>
+    Discover Your Collection
+  </h1>
+
+  <p>
+    Browse and explore our latest content.
+  </p>
+
 </section>
 
+
 <div class="search-box">
+
   <input
     type="text"
     id="search"
     placeholder="Search content..."
     autocomplete="off"
   >
+
 </div>
+
 
 <div class="content-header">
 
@@ -276,181 +282,233 @@
   </div>
 
   <div class="sort-buttons">
-    <button id="recentBtn" class="active" onclick="sortContents('recent')">
+
+    <button
+      id="recentBtn"
+      class="active"
+      onclick="sortContents('recent')"
+    >
       Recent
     </button>
 
-    <button id="viewsBtn" onclick="sortContents('views')">
+    <button
+      id="viewsBtn"
+      onclick="sortContents('views')"
+    >
       Most Viewed
     </button>
 
-    <button id="azBtn" onclick="sortContents('az')">
+    <button
+      id="azBtn"
+      onclick="sortContents('az')"
+    >
       A-Z
     </button>
+
   </div>
 
 </div>
 
+
 <main>
-  <div class="grid" id="contentGrid">
 
-    <div class="empty" id="emptyMessage">
-      No content found.
-    </div>
+  <div
+    class="grid"
+    id="contentGrid"
+  ></div>
 
-  </div>
 </main>
+
 
 <footer>
   © 2026 My Website
 </footer>
 
 
+<!-- DATA HANYA DARI data.js -->
 <script src="data.js"></script>
+
 
 <script>
 
-  let currentContents = [...contents];
-
-  function renderContents(data) {
-
-    const grid = document.getElementById("contentGrid");
-    const empty = document.getElementById("emptyMessage");
-    const count = document.getElementById("content-count");
-
-    grid.innerHTML = "";
-
-    if (data.length === 0) {
-
-      grid.appendChild(empty);
-      empty.style.display = "block";
-
-      count.textContent = "0 contents";
-
-      return;
-    }
-
-    empty.style.display = "none";
-
-    count.textContent =
-      data.length + (data.length === 1 ? " content" : " contents");
+let currentContents = [...contents];
 
 
-    data.forEach((item, index) => {
+function renderContents(data) {
 
-      const card = document.createElement("a");
+  const grid =
+    document.getElementById("contentGrid");
 
-      card.className = "card";
-
-      /*
-       * Detail page menggunakan content.html
-       * dengan parameter ?id=
-       */
-      card.href = "content.html?id=" + index;
+  const count =
+    document.getElementById("content-count");
 
 
-      card.innerHTML = `
+  grid.innerHTML = "";
 
-        <div class="thumbnail">
 
-          <img
-            src="${item.image}"
-            alt="${item.title}"
-            loading="lazy"
-            onerror="this.style.display='none'"
-          >
+  count.textContent =
+    data.length +
+    (data.length === 1 ? " content" : " contents");
 
-        </div>
 
-        <div class="card-info">
+  if (data.length === 0) {
 
-          <div class="card-title">
-            ${item.title}
-          </div>
+    grid.innerHTML = `
+      <div class="empty">
+        No content found.
+      </div>
+    `;
 
-          <div class="card-meta">
-
-            <span>
-              ${item.size}
-            </span>
-
-            <span>
-              ${item.views || 0} views
-            </span>
-
-          </div>
-
-        </div>
-
-      `;
-
-      grid.appendChild(card);
-
-    });
+    return;
 
   }
 
 
-  function sortContents(type) {
+  data.forEach(item => {
 
-    document.querySelectorAll(".sort-buttons button")
-      .forEach(btn => btn.classList.remove("active"));
-
-
-    if (type === "recent") {
-
-      document.getElementById("recentBtn")
-        .classList.add("active");
-
-      currentContents = [...contents];
-
-    }
+    const card =
+      document.createElement("a");
 
 
-    if (type === "views") {
-
-      document.getElementById("viewsBtn")
-        .classList.add("active");
-
-      currentContents = [...contents].sort(
-        (a, b) => (b.views || 0) - (a.views || 0)
-      );
-
-    }
+    card.className = "card";
 
 
-    if (type === "az") {
+    /*
+      Setiap konten memakai ID sendiri.
+      Contoh:
+      content.html?id=autumren
+    */
 
-      document.getElementById("azBtn")
-        .classList.add("active");
-
-      currentContents = [...contents].sort(
-        (a, b) => a.title.localeCompare(b.title)
-      );
-
-    }
+    card.href =
+      "content.html?id=" +
+      encodeURIComponent(item.id);
 
 
-    renderContents(currentContents);
+    card.innerHTML = `
+
+      <div class="thumbnail">
+
+        <img
+          src="${item.image}"
+          alt="${item.title}"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <div class="card-info">
+
+        <div class="card-title">
+          ${item.title}
+        </div>
+
+
+        <div class="card-meta">
+
+          <span>
+            ${item.size}
+          </span>
+
+          <span>
+            ${item.views || 0} views
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    grid.appendChild(card);
+
+  });
+
+}
+
+
+function sortContents(type) {
+
+  document
+    .querySelectorAll(".sort-buttons button")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+
+  if (type === "recent") {
+
+    document
+      .getElementById("recentBtn")
+      .classList.add("active");
+
+    currentContents =
+      [...contents];
 
   }
 
 
-  document.getElementById("search")
-    .addEventListener("input", function () {
+  if (type === "views") {
 
-      const keyword = this.value.toLowerCase().trim();
+    document
+      .getElementById("viewsBtn")
+      .classList.add("active");
 
-      const filtered = currentContents.filter(item =>
-        item.title.toLowerCase().includes(keyword)
+    currentContents =
+      [...contents].sort(
+        (a, b) =>
+          (b.views || 0) -
+          (a.views || 0)
       );
 
-      renderContents(filtered);
+  }
 
-    });
+
+  if (type === "az") {
+
+    document
+      .getElementById("azBtn")
+      .classList.add("active");
+
+    currentContents =
+      [...contents].sort(
+        (a, b) =>
+          a.title.localeCompare(b.title)
+      );
+
+  }
 
 
   renderContents(currentContents);
+
+}
+
+
+document
+  .getElementById("search")
+  .addEventListener("input", function () {
+
+    const keyword =
+      this.value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+      currentContents.filter(item =>
+        item.title
+          .toLowerCase()
+          .includes(keyword)
+      );
+
+
+    renderContents(filtered);
+
+  });
+
+
+renderContents(currentContents);
 
 </script>
 
